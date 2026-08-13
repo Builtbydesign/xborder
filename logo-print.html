@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>gaia xborder</title>
+  <style>
+    @font-face {
+      font-family: 'iAWriterDuoS';
+      src: url('font/iAWriterDuoS-Regular.woff2') format('woff2'),
+           url('font/iAWriterDuoS-Regular.woff') format('woff'),
+           url('font/iAWriterDuoS-Regular.eot') format('embedded-opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'iAWriterDuoSBold';
+      src: url('font/iAWriterDuoS-Bold.woff2') format('woff2'),
+           url('font/iAWriterDuoS-Bold.woff') format('woff'),
+           url('font/iAWriterDuoS-Bold.eot') format('embedded-opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      min-height: 100vh;
+      font-family: 'iAWriterDuoS', monospace;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    #three-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #logo {
+      display: block;
+      font-family: 'iAWriterDuoS';
+      color: #053345;
+      width: 350px;
+      height: 140px;
+      margin: 20px auto 20px auto;
+      position: relative;
+      z-index: 2;
+    }
+    #logo:after {
+      content: '';
+      display: block;
+      width: 300px;
+      height: 300px;
+      background: rgba(0, 0, 100, 0.1);
+      border-radius: 50%;
+      position: absolute;
+      top: -150px;
+      left: 110px;
+      z-index: 0;
+    }
+    #logo svg {
+      width: 200px;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    #content {
+      display: block;
+      margin: 0 auto;
+      width: 350px;
+      color: #053345;
+    }
+
+    .trigger-link {
+      display: inline-block;
+      background: transparent;
+      color: #053345;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      z-index: 1;
+    }
+    .text-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+    #txt {
+      position: absolute;
+      left: 170px;
+      top: 60px;
+      font-size: 30px;
+      line-height: 20px;
+      font-family: 'iAWriterDuoSBold';
+      color: #053345;
+      pointer-events: none;
+    }
+    #txt p {
+      margin: 0;
+    }
+    #txt p i {
+      font-size: 40px;
+      padding-right: 3px;
+      font-style: italic;
+    }
+    #sub {
+      position: absolute;
+      left: 170px;
+      top: 90px;
+      font-family: 'iAWriterDuoS';
+      font-size: 13px;
+      color: #053345;
+      pointer-events: none;
+      opacity: 1;
+    }
+    .ink {
+      fill: none;
+      stroke: #999;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s ease;
+    }
+    .ink.active {
+      stroke: #053345;
+    }
+  </style>
+</head>
+<body>
+  <div id="three-container"></div>
+  <div id="logo">
+    <a href="#" class="trigger-link" id="triggerBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 400">
+        <defs>
+          <clipPath id="mask">
+            <path d="m342 194 6-10 2-7q0-4-8-4h-7l-4 3q-3 2-12 20-17 32-27 30l7-21 8-27q0-2-3-4l-6-2-4 2-4 1-2-1-6-3q-5-2-11-2-8 0-15 5l-13 15q-8 11-16 18t-22 10l12-28 12-26q0-5-2-9-3-4-7-4-7 0-12 4l-11 12-12 17q-9 11-19 20-27 24-44 32-12 6-25 6-16 0-26-14l-6-12q-2-6-1-22t15-40 39-41q24-18 45-27 18-7 47-7 10 0 17 4 6 4 6 10l-2 8-10 17q-9 13-24 23-14 11-22 14l-19 7-18 5h-26l-11-1q3 8 9 11 5 3 14 3 18 0 44-11 20-9 35-20 14-11 29-33 14-22 12-27t-10-11l-6-3h-2l-3-1-8-2h-26q-19 2-44 11-24 10-47 29t-38 44-15 49q-2 29 16 42 13 9 33 9l17-2q13-3 34-15t45-46l-12 28q-4 9-7 12-2 4-8 7l-9 6-20 14-20 16-16 13q-11 10-12 20t3 16 11 6q8 0 14-2 6-1 25-18t37-42l16-25 7-13q5-8 8-8l8-4 6-3 8-4 7-2v3l1 10q0 5 4 11 3 6 10 2 6-4 11-10l10-12 5-6q-1 10 2 19 2 8 5 11 8-1 17-8 10-6 13-12h1q0 6 4 13l5 8q8-2 17-9t12-14l2 3 2 5 4 6 3 3q4 0 15-8 11-9 18-17-2 10 2 19 3 8 6 11 13-5 27-19 14-15 17-27l-17 18-19 17 6-24 9-24-2-3-8-2-4 1-4 1-7-3q-6-3-13-3l-9 1-7 3-14 22q-8 14-17 24-8 9-12 9 3-18 11-34m31 19 3-9q7-13 25-25-4 20-13 31l-7 5-3 2q-4 0-5-4M93 318q-4-4 0-11 10-19 76-64l-28 40-17 21q-7 9-13 12-5 4-11 4-5 0-7-2m160-105q0-4 3-10 8-15 25-24 0 14-11 27l-8 8q-3 3-5 3-4 0-4-4m114-79-2-3q-2-3-5-3-5 0-10 4-4 3-5 8-2 5 0 8 3 4 9 4 3 0 8-5 5-6 5-13"/>
+          </clipPath>
+        </defs>
+        <g clip-path="url(#mask)">
+          <path id="a" class="ink" stroke-width="20" d="M107.55 171.175q.992383.037695 2 .075 4.15.1 12.55.35 8.3.2 16.1-.7 7.65-.9 19-4.85 11.35-3.9 19.7-7.25 8.3-3.3 23-14.2 14.751953-10.895898 21.925-22.05 7.16504-11.165234 11-18 3.842773-6.832227 5.025-14.275 1.17871-7.436523-8.875-12.35-10.052734-4.906445-34.45-3.75Q170.137305 75.321484 146.9 86.6q-23.245117 11.285156-43.85 29.15-20.597852 17.854688-33.275 42.2-12.69121 24.351367-13.75 41.125-1.047852 16.767383 1.325 22.95 2.360742 6.189844 10.925 16.5 8.568164 10.301367 28.85 10.25 20.285352-.041797 36.225-11.9 15.936914-11.869531 34.55-29.275 18.61543-17.400586 23.975-23.6 5.370898-6.18789 12.175-15.075 6.795898-8.889844 10.9-11.6.293164-.194336 5.6-1.375"/>
+          <path id="b" class="ink" stroke-width="22" d="M220.55 155.95q-8.189648 16.282617-18.5 39.675-5.79707 13.141992-12.725 27.15-7.441797 14.787305-11.925 23.2-14.164258 26.587305-34.95 50.975-20.789258 24.375977-36.6 27.7"/>
+          <path id="c" class="ink" stroke-width="15" d="M105.85 324.65q-55.49375-3.7 83.65-97.65 46.567187-18.274805 62.225-39.45 16.588477-22.424023 36.025-9.8"/>
+          <path id="d" class="ink" stroke-width="20" d="M287.75 177.75q-29.617773-9.37461-40.225 28.725-10.599023 38.104883 15.375 13.825 20.1-24.05 36.15-44.45"/>
+          <path id="e" class="ink" stroke-width="20" d="M299.05 175.85q-13.500781 26.360156-13.9 42.4-.48164 11.371875 1.8 14.2 18.419336-5.099805 30.9-28.45l20.1-27.05"/>
+          <path id="f" class="ink" stroke-width="20" d="M337.95 176.95q-17.842187 33.829492-12.55 55.5 9.339453-1.26211 15.3-6.5 14.870117-17.075195 31.625-43 11.483398-13.920898 31.875-7.5"/>
+          <path id="g" class="ink" stroke-width="18" d="M404.2 175.45q-23.919336-1.501562-37.975 31.05-14.045508 32.542578 22.225 6 14.55-16.25 30.6-36.65"/>
+          <path id="h" class="ink" stroke-width="19" d="M419.05 175.85q-13.5 26.35-13.9 42.4-.5 11.35 1.8 14.2 18.4-5.1 42.05-41.45"/>
+          <path id="i" class="ink" stroke-width="20" d="M 357.45 135.95L 352.45 144.95"/>
+        </g>
+      </svg>
+    </a>
+    <div class="text-wrapper">
+      <div id="txt"><p></p></div>
+      <div id="sub"></div>
+    </div>
+  </div>
+
+
+  <script>
+    const paths = document.querySelectorAll('.ink');
+    const txtEl = document.getElementById('txt');
+    const subEl = document.getElementById('sub');
+    let animationTimer = null;
+    let isAnimating = false;
+    let hasStarted = false;
+    let typewriterTimer = null;
+    let isTyping = false;
+    let charIndex = 0;
+    let currentPhase = 'main';
+    const mainText = 'Xborder';
+    const subText = 'Transport & Logistics';
+    const typeSpeed = 50;
+    function typeWriter() {
+      if (currentPhase === 'main') {
+        if (charIndex < mainText.length) {
+          let html = '<p>';
+          for (let i = 0; i <= charIndex; i++) {
+            const char = mainText.charAt(i);
+            html += char === 'X' ? '<i>X</i>' : char;
+          }
+          html += '</p>';
+          txtEl.innerHTML = html;
+          charIndex++;
+          typewriterTimer = setTimeout(typeWriter, typeSpeed);
+        } else {
+          currentPhase = 'sub';
+          charIndex = 0;
+          subEl.textContent = '';
+          setTimeout(typeWriter, 30);
+        }
+      } else if (currentPhase === 'sub') {
+        if (charIndex < subText.length) {
+          subEl.textContent = subText.substring(0, charIndex + 1);
+          charIndex++;
+          typewriterTimer = setTimeout(typeWriter, typeSpeed);
+        } else {
+          isTyping = false;
+        }
+      }
+    }
+    function resetTypewriter() {
+      if (typewriterTimer) clearTimeout(typewriterTimer);
+      txtEl.innerHTML = '<p></p>';
+      subEl.textContent = '';
+      charIndex = 0;
+      isTyping = false;
+      currentPhase = 'main';
+    }
+    function startTypewriter() {
+      resetTypewriter();
+      isTyping = true;
+      typewriterTimer = setTimeout(typeWriter, 300);
+    }
+    function preparePaths() {
+      paths.forEach(path => {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = length + ' ' + length;
+        path.style.strokeDashoffset = length;
+        path.style.transition = 'none';
+        path.classList.remove('active');
+      });
+    }
+    let index = 0;
+    function animateNext() {
+      if (index >= paths.length) {
+        isAnimating = false;
+        if (hasStarted) startTypewriter();
+        return;
+      }
+      const path = paths[index];
+      const length = path.getTotalLength();
+      const duration = index === 0 ? 0.4 : 0.2;
+      path.style.transition = `stroke-dashoffset ${duration}s ease-in-out`;
+      path.classList.add('active');
+      void path.offsetWidth;
+      path.style.strokeDashoffset = '0';
+      index++;
+      animationTimer = setTimeout(animateNext, duration * 1000);
+    }
+    function startAnimation() {
+      if (isAnimating || hasStarted) return;
+      hasStarted = true;
+      resetTypewriter();
+      paths.forEach(path => {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = length + ' ' + length;
+        path.style.strokeDashoffset = length;
+        path.style.transition = 'none';
+        path.classList.remove('active');
+      });
+      index = 0;
+      isAnimating = true;
+      setTimeout(animateNext, 100);
+    }
+    function resetAnimation() {
+      if (animationTimer) clearTimeout(animationTimer);
+      index = 0;
+      isAnimating = false;
+      hasStarted = false;
+      resetTypewriter();
+      paths.forEach(path => {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = length + ' ' + length;
+        path.style.strokeDashoffset = length;
+        path.style.transition = 'none';
+        path.classList.remove('active');
+      });
+      void document.body.offsetWidth;
+    }
+    preparePaths();
+    resetTypewriter();
+    document.getElementById('triggerBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      resetAnimation();
+      setTimeout(startAnimation, 200);
+    });
+    window.onload = function() {
+      startAnimation();
+    };
+  </script>
+</body>
+</html>
